@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.netology.daolayer.repository.Repository;
+import ru.netology.daolayer.service.Webservice;
 
 import java.util.List;
 
@@ -12,14 +12,14 @@ import java.util.List;
 @RequestMapping("/")
 public class WebController {
 
-    private final Repository repository;
+    private final Webservice service;
 
-    public WebController(Repository repository) {
-        this.repository = repository;
+    public WebController(Webservice service) {
+        this.service = service;
     }
 
     @GetMapping("/products/fetch-product")
     List<String> getProductName(@RequestParam String name) {
-        return repository.getProductName(name);
+        return service.getProductName(name);
     }
 }
